@@ -1,15 +1,15 @@
-import  * as React from 'react';
+import React from 'react';
 
-import * as styles from './Airport.scss';
+import styles from './Airport.module.scss';
 
 interface Props {
-    imageSrc: string;
-    name: string;
+  imageSrc: string;
+  name: string;
 }
 
 export const Airport = ({ imageSrc, name }: Props) => (
-    <div className={styles.airport}>
-        <img className={styles.image} src={imageSrc} />
-        <p>{name}</p>
-    </div>
-)
+  <div className={styles.airport}>
+    <img className={styles.image} src={imageSrc} />
+    <p>{name}</p>
+  </div>
+);
