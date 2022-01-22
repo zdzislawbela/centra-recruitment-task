@@ -8,8 +8,14 @@
     "lint": "npm run lint:scripts && npm run lint:styles",
     "lint:scripts": "",
     "lint:styles": "",
-    "prepush": "npm run lint && tsc --noEmit",
     "tsc": "tsc"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run lint && tsc --noEmit",
+      "postinstall": "husky install"
+    }
   },
   "dependencies": {
     "react": "^17.0.2",
@@ -22,7 +28,7 @@
     "@types/react-dom": "^17.0.5",
     "autoprefixer": "^10.2.5",
     "cross-env": "^7.0.3",
-    "husky": "^1.2.0",
+    "husky": "^7.0.4",
     "parcel": "^2.2.1",
     "postcss": "^8.3.0",
     "postcss-custom-properties": "^11.0.0",
