@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
-import { debounce } from 'lodash';
 
 interface HandleChange {
+  current: string;
   value: string;
   updateState: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -9,23 +9,14 @@ interface HandleChange {
 export const useSearchPanel = () => {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
-  const [debouncedValue, setDebouncedValue] = useState('');
+  const [searchPhrase, setSearchPhrase] = useState('');
+  const [currentInput, setCurrentInput] = useState('');
 
-  const getMatchedAirport = (query: string) => {
-    setDebouncedValue(query);
-
-    return [];
-  };
-
-  const delayedQuery = useCallback(
-    debounce((query: string) => getMatchedAirport(query), 500),
-    []
-  );
-
-  const handleChange = ({ value, updateState }: HandleChange) => {
+  const handleChange = ({ current, value, updateState }: HandleChange) => {
+    setCurrentInput(current);
     updateState(value);
-    delayedQuery(value);
+    setSearchPhrase(value);
   };
 
-  return { from, setFrom, setTo, to, debouncedValue, handleChange };
+  return { from, setFrom, setTo, to, searchPhrase, handleChange, currentInput };
 };

@@ -1,16 +1,22 @@
 .container {
   display: flex;
   justify-content: center;
+  position: relative;
 
   .panel {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    max-width: 700px;
+    flex-wrap: wrap;
+    width: 700px;
     max-height: 92;
-    background-color: #ffffff;
-    padding: 10px;
+    background: #ffffff;
+    padding: 8px 24px;
     margin: 10px;
-    border-radius: 20px;
+    border: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    box-shadow: 0px 6px 12px rgba(71, 67, 78, 0.08),
+      0px -6px 8px rgba(71, 67, 78, 0.02);
+    border-radius: 16px;
   }
 }
