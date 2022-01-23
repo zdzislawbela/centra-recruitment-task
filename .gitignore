@@ -3,5 +3,5 @@ node_modules
 .parcel-cache
 *.log
 .DS_Store
-
+.env
 .vscode/settings.json

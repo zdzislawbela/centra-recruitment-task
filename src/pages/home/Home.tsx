@@ -1,11 +1,11 @@
 import React from 'react';
-import { Airport } from '../../components/Airport/Airport';
 
-import styles from './Home.module.scss';
+import { AirportCards } from '../../components/AirportCards';
+import { SearchPanel } from '../../components/SearchPanel';
 
 export const Home = () => (
-  <div className={styles.page}>
-    <Airport imageSrc="" name="Name" />
-    <Airport imageSrc="" name="Name2" />
-  </div>
+  <>
+    <SearchPanel />
+    <AirportCards />
+  </>
 );

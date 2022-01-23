@@ -1,5 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { HOME_ROUTE } from '../../consts/routes';
 
-import styles from './Results.module.scss';
-
-export const Results = () => <div className={styles.page}>Results</div>;
+export const Results = () => (
+  <nav>
+    <Link to={HOME_ROUTE}>Back</Link>
+  </nav>
+);
