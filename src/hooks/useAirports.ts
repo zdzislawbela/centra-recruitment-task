@@ -1,14 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
-import { debounce } from 'lodash';
 import axios from 'axios';
 
 import { Airport } from '../models/Airport';
 import { AIRPORTS_API } from '../consts/api';
 
 export const useAirports = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [list, setList] = useState<Airport[]>([]);
+  const [isLoadingAirport, setIsLoadingAirport] = useState(false);
+  const [errorAirport, setErrorAirport] = useState(false);
+  const [airportData, setAirportData] = useState<Airport[]>([]);
 
   const options = {
     url: AIRPORTS_API,
@@ -19,13 +18,14 @@ export const useAirports = () => {
 
   const sendQuery = useCallback(async () => {
     try {
-      setIsLoading(true);
+      setIsLoadingAirport(true);
       const res = await axios(options);
-      setList(res.data);
+      setAirportData(res.data);
     } catch (error) {
-      setError(error);
+      setErrorAirport(error);
+      setTimeout(() => sendQuery(), 1000);
     } finally {
-      setIsLoading(false);
+      setIsLoadingAirport(false);
     }
   }, []);
 
@@ -33,12 +33,7 @@ export const useAirports = () => {
     sendQuery();
   }, []);
 
-  const getDestructuredAirports = (airports: Airport[]) => {
-    if (!Array.isArray(airports)) return;
-    console.log(Array.isArray(airports));
-    return airports;
-  };
+  const airports = Array.isArray(airportData) ? airportData : undefined;
 
-  const destructuredAirports = getDestructuredAirports(list);
-  return { destructuredAirports, isLoading, error };
+  return { airports, isLoadingAirport, errorAirport };
 };
