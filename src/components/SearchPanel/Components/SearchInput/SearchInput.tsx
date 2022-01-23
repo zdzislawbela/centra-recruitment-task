@@ -8,14 +8,13 @@ interface Props {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
 export const SearchInput = ({ label, value, onChange }: Props) => {
   return (
     <div>
-      <div>
-        <p>{label}</p>
-        <input type="text" placeholder="_" value={value} onChange={onChange} />
-        <img src={ChevronArrow} alt="Down arrow" />
-      </div>
+      <p>{label}</p>
+      <input type="text" placeholder="_" value={value} onChange={onChange} />
+      <img src={ChevronArrow} alt="Down arrow" />
     </div>
   );
 };

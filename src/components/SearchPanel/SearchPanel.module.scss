@@ -1,6 +1,16 @@
 .container {
   display: flex;
-  max-width: 700px;
-  max-height: 92;
-  background-color: #ffffff;
+  justify-content: center;
+
+  .panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 700px;
+    max-height: 92;
+    background-color: #ffffff;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+  }
 }

@@ -1,40 +1,48 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import { debounce } from 'lodash';
+
 import { SearchButton } from './Components/SearchButton';
 import { SearchInput } from './Components/SearchInput/';
+import { useSearchPanel } from './useSearchPanel';
 
 //@ts-expect-error
 import styles from './SearchPanel.module.scss';
 
 export const SearchPanel = () => {
-  const [from, setFrom] = useState('');
-  const [to, setTo] = useState('');
-
-  const handleChangeFrom = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setTo('');
-    setFrom(event.target.value);
-  };
-
-  const handleChangeTo = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setFrom('');
-    setTo(event.target.value);
-  };
+  const { from, to, setFrom, setTo, debouncedValue, handleChange } =
+    useSearchPanel();
 
   return (
     <>
       <div className={styles.container}>
-        <SearchInput label="From" value={from} onChange={handleChangeFrom} />
-        <SearchInput label="To" value={to} onChange={handleChangeTo} />
-        <SearchButton />
+        <div className={styles.panel}>
+          <SearchInput
+            label="From"
+            value={from}
+            onChange={(event) =>
+              handleChange({
+                value: event.target.value,
+                updateState: setFrom,
+              })
+            }
+          />
+          <SearchInput
+            label="To"
+            value={to}
+            onChange={(event) =>
+              handleChange({
+                value: event.target.value,
+                updateState: setTo,
+              })
+            }
+          />
+          <SearchButton />
+        </div>
       </div>
 
       {(from || to) && (
         <ul>
-          <li>{from ? 'Warsow' : 'Lisbona'}</li>
-          <li>{to ? 'Cracow' : 'Toronto'}</li>
+          <li>{debouncedValue}</li>
         </ul>
       )}
     </>
