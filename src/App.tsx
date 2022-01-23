@@ -1,4 +1,4 @@
 import React from 'react';
-import { Home } from './pages/home';
+import { AppRouter } from './router/AppRouter';
 
-export const App = () => <Home />;
+export const App = () => <AppRouter />;
