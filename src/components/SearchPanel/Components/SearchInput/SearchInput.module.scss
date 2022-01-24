@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
+  margin: 0 20px;
+
+  .searchContainer {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    width: 100%;
+    margin-right: 20px;
+
+    & > input {
+      border: none;
+      & :hover {
+        outline: none;
+      }
+    }
+  }
+  img {
+    width: 20px;
+  }
+}

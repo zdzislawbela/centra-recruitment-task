@@ -1,5 +1,6 @@
 import React from 'react';
-import { useAirports } from '../../hooks/useAirports';
+
+import { useAppContext } from '../../context';
 import { Card } from '../Card';
 import { Loading } from '../Loading/';
 import { Error } from '../Error';
@@ -8,20 +9,19 @@ import { Error } from '../Error';
 import styles from './AirportCards.module.scss';
 
 export const AirportCards = () => {
-  const { destructuredAirports, isLoading, error } = useAirports();
-  console.log({ destructuredAirports });
+  const { airports, isLoadingAirport, errorAirport, connections } =
+    useAppContext();
 
-  if (isLoading) {
+  if (isLoadingAirport) {
     return <Loading />;
   }
-  if (error || !destructuredAirports) {
-    console.log('dziala');
+  if (errorAirport || !airports) {
     return <Error />;
   }
 
   return (
     <div className={styles.container}>
-      {destructuredAirports.map((airport) => {
+      {airports.map((airport) => {
         return (
           <Card
             key={airport.id}
