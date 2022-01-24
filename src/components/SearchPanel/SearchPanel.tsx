@@ -1,11 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { SearchButton } from './Components/SearchButton';
 import { SearchInput } from './Components/SearchInput/';
 import { SearchDropdown } from './Components/SearchDropdown';
 import { useSearchPanel } from './useSearchPanel';
 import { useAppContext } from '../../context';
-
+import { RESULTS_ROUTE } from '../../consts/routes';
 //@ts-expect-error
 import VerticalLine from '../../assets/svg/vertical-line.svg';
 
@@ -13,6 +14,9 @@ import VerticalLine from '../../assets/svg/vertical-line.svg';
 import styles from './SearchPanel.module.scss';
 
 export const SearchPanel = () => {
+  const navigate = useNavigate();
+  const { airportNames, airports } = useAppContext();
+
   const {
     from,
     to,
@@ -24,11 +28,17 @@ export const SearchPanel = () => {
     setSearchedCity,
     handleOnFocus,
   } = useSearchPanel();
-  const { airportNames } = useAppContext();
 
   const dropDownList = airportNames.filter((name: string) => {
     return name.toLocaleLowerCase().includes(searchPhrase.toLocaleLowerCase());
   });
+
+  const handleSearchConnections = () => {
+    const fromAirport = airports.find((airport) => airport.name === from);
+    const toAirport = airports.find((airport) => airport.name === to);
+
+    navigate(`${RESULTS_ROUTE}/?from=${fromAirport.code}&to=${toAirport.code}`);
+  };
 
   return (
     <div className={styles.container}>
@@ -63,7 +73,7 @@ export const SearchPanel = () => {
 
         <img src={VerticalLine} alt="Vertical line" />
 
-        <SearchButton />
+        <SearchButton onClick={handleSearchConnections} />
       </div>
 
       {isDropDownOpen && (
