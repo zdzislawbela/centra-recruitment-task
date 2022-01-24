@@ -13,23 +13,22 @@ import VerticalLine from '../../assets/svg/vertical-line.svg';
 import styles from './SearchPanel.module.scss';
 
 export const SearchPanel = () => {
-  const { from, to, setFrom, setTo, searchPhrase, handleChange, currentInput } =
-    useSearchPanel();
+  const {
+    from,
+    to,
+    setFrom,
+    setTo,
+    searchPhrase,
+    handleChange,
+    isDropDownOpen,
+    setSearchedCity,
+    handleOnFocus,
+  } = useSearchPanel();
   const { airportNames } = useAppContext();
 
   const dropDownList = airportNames.filter((name: string) => {
     return name.toLocaleLowerCase().includes(searchPhrase.toLocaleLowerCase());
   });
-
-  const setSearchedCity = (city: string) => {
-    if (!currentInput) return;
-    if (currentInput === 'from') {
-      setFrom(city);
-    }
-    if (currentInput === 'to') {
-      setTo(city);
-    }
-  };
 
   return (
     <div className={styles.container}>
@@ -44,6 +43,7 @@ export const SearchPanel = () => {
               updateState: setFrom,
             })
           }
+          onFocus={handleOnFocus}
         />
 
         <img src={VerticalLine} alt="Vertical line" />
@@ -58,13 +58,15 @@ export const SearchPanel = () => {
               updateState: setTo,
             })
           }
+          onFocus={(event) => handleOnFocus(event)}
         />
 
         <img src={VerticalLine} alt="Vertical line" />
 
         <SearchButton />
       </div>
-      {(from || to) && (
+
+      {isDropDownOpen && (
         <SearchDropdown
           airportsName={dropDownList}
           title="Popular airports nearby"

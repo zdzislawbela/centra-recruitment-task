@@ -18,7 +18,6 @@ interface Props {
 
 export const SearchDropdown = ({ airportsName, title, onClick }: Props) => {
   const handleOnClick = (value: string) => {
-    console.log({ value });
     onClick(value);
   };
 

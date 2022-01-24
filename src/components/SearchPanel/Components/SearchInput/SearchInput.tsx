@@ -9,9 +9,10 @@ interface Props {
   label: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus: React.FocusEventHandler<HTMLInputElement>;
 }
 
-export const SearchInput = ({ label, value, onChange }: Props) => {
+export const SearchInput = ({ label, value, onChange, onFocus }: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.searchContainer}>
@@ -22,6 +23,7 @@ export const SearchInput = ({ label, value, onChange }: Props) => {
           placeholder="_"
           value={value}
           onChange={onChange}
+          onFocus={onFocus}
         />
       </div>
       <img src={ChevronArrow} alt="Down arrow" />
