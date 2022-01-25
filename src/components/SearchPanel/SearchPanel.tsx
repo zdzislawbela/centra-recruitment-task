@@ -37,7 +37,7 @@ export const SearchPanel = () => {
     const fromAirport = airports.find((airport) => airport.name === from);
     const toAirport = airports.find((airport) => airport.name === to);
 
-    navigate(`${RESULTS_ROUTE}/?from=${fromAirport.code}&to=${toAirport.code}`);
+    navigate(`${RESULTS_ROUTE}/${fromAirport.code}/${toAirport.code}`);
   };
 
   return (
