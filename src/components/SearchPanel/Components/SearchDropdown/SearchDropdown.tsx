@@ -1,13 +1,9 @@
 import React from 'react';
 
-//@ts-expect-error
 import Airplane from '../../../../assets/svg/airplane.svg';
-
-//@ts-expect-error
 import DropDownLine from '../../../../assets/svg/drop-down-line.svg';
-//@ts-expect-error
 import Pin from '../../../../assets/svg/pin.svg';
-//@ts-expect-error
+
 import styles from './SearchDropdown.module.scss';
 
 interface Props {

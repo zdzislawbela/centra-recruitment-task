@@ -7,10 +7,9 @@ import { SearchDropdown } from './Components/SearchDropdown';
 import { useSearchPanel } from './useSearchPanel';
 import { useAppContext } from '../../context';
 import { RESULTS_ROUTE } from '../../consts/routes';
-//@ts-expect-error
+
 import VerticalLine from '../../assets/svg/vertical-line.svg';
 
-//@ts-expect-error
 import styles from './SearchPanel.module.scss';
 
 export const SearchPanel = () => {

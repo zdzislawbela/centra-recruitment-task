@@ -5,17 +5,15 @@ import { Card } from '../Card';
 import { Loading } from '../Loading/';
 import { Error } from '../Error';
 
-//@ts-expect-error
 import styles from './AirportCards.module.scss';
 
 export const AirportCards = () => {
-  const { airports, isLoadingAirport, errorAirport, connections } =
-    useAppContext();
+  const { airports, isLoading, error } = useAppContext();
 
-  if (isLoadingAirport) {
+  if (isLoading) {
     return <Loading />;
   }
-  if (errorAirport || !airports) {
+  if (error || !airports) {
     return <Error />;
   }
 

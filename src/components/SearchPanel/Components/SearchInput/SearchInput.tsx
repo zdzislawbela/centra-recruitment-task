@@ -1,8 +1,7 @@
 import React from 'react';
 
-//@ts-expect-error
 import ChevronArrow from '../../../../assets/svg/chevron-arrow.svg';
-//@ts-expect-error
+
 import styles from './SearchInput.module.scss';
 
 interface Props {

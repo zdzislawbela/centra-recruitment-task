@@ -1,8 +1,7 @@
 import React from 'react';
 
-//@ts-expect-error
 import MagnifyingGlass from '../../../../assets/svg/magnifying-glass.svg';
-//@ts-expect-error
+
 import styles from './SearchButton.module.scss';
 
 interface Props {
