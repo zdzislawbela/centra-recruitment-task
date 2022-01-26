@@ -13,7 +13,7 @@ export const AppRouter = () => {
       <Routes>
         <Route path={HOME_ROUTE} element={<Default component={<Home />} />} />
         <Route
-          path={`${RESULTS_ROUTE}/:from/:to`}
+          path={RESULTS_ROUTE}
           element={<Default component={<Results />} />}
         />
         <Route path="*" element={<Default component={<NotFound />} />} />

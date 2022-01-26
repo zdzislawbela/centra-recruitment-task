@@ -1,6 +1,6 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 
+import { useQueryParam } from '../../hooks/useQueryParam';
 import { useAppContext } from '../../context';
 import { Background } from './components/Background/';
 import { BackButton } from './components/BackButton';
@@ -9,7 +9,8 @@ import { getImagesByCode } from './helpers/getImagesByCode';
 import { Error } from '../../components/Error';
 
 export const Results = () => {
-  const { from, to } = useParams();
+  const from = useQueryParam('from');
+  const to = useQueryParam('to');
   const { airports, isLoading, error } = useAppContext();
 
   if (error || !airports) {
