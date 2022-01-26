@@ -1,5 +1,6 @@
 import React from 'react';
 
+import FlyCurvedLine from '../../../../assets/svg/fly-curved-line.svg';
 import styles from './Background.module.scss';
 
 interface Props {
@@ -7,22 +8,27 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const Background = ({ images, children }: Props) => {
-  return (
-    <>
-      <div className={styles.background}>
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={styles.from}
-            style={{
-              backgroundImage: `url(${image})`,
-              backgroundSize: 'cover',
-            }}
-          />
-        ))}
+export const Background = ({ images, children }: Props) => (
+  <>
+    <div className={styles.background}>
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className={styles.image}
+          style={{
+            backgroundImage: `url(${image})`,
+            backgroundSize: 'cover',
+          }}
+        />
+      ))}
+      <div className={styles.flyLineContainer}>
+        <img
+          className={styles.flyLine}
+          src={FlyCurvedLine}
+          alt="Fly curved line"
+        />
       </div>
-      <div className={styles.children}>{children}</div>
-    </>
-  );
-};
+    </div>
+    <div className={styles.children}>{children}</div>
+  </>
+);
