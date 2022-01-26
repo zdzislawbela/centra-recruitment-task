@@ -1,53 +1,68 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { RESULTS_ROUTE } from '../../consts/routes';
 
-interface HandleChange {
-  current: string;
+import { useAppContext } from '../../context';
+
+interface HandleUserAction {
   value: string;
   updateState: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const useSearchPanel = () => {
+  const { airportNames, airports } = useAppContext();
+  const navigate = useNavigate();
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
   const [searchPhrase, setSearchPhrase] = useState('');
-  const [currentInput, setCurrentInput] = useState('');
-  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
-  const handleChange = ({ current, value, updateState }: HandleChange) => {
-    setCurrentInput(current);
+  const inputs = [
+    {
+      name: 'From',
+      search: from,
+      updateState: setFrom,
+    },
+    {
+      name: 'To',
+      search: to,
+      updateState: setTo,
+    },
+  ];
+
+  const handleChange = ({ value, updateState }: HandleUserAction) => {
     updateState(value);
     setSearchPhrase(value);
   };
 
-  const setSearchedCity = (city: string) => {
-    if (!currentInput) return;
-    if (currentInput === 'from') {
-      setFrom(city);
-    }
-    if (currentInput === 'to') {
-      setTo(city);
-    }
-    setIsDropDownOpen(false);
-  };
+  const handleDropDownClick = ({ value, updateState }: HandleUserAction) =>
+    updateState(value);
 
-  const handleOnFocus = (
-    event: React.FocusEvent<HTMLInputElement, Element>
-  ) => {
-    const inputName = event.target.name.includes('From') ? 'from' : 'to';
-    setCurrentInput(inputName);
-    setIsDropDownOpen(true);
+  const airportsList = airportNames.filter(
+    (name: string) =>
+      name.toLocaleLowerCase().includes(searchPhrase.toLocaleLowerCase()) &&
+      name !== to &&
+      name !== from
+  );
+
+  const handleSubmitForm = (event?: React.SyntheticEvent<Element, Event>) => {
+    event.preventDefault();
+    if (!from || !to) return;
+    const fromAirport = airports.find(({ name }) => name === from);
+    const toAirport = airports.find(({ name }) => name === to);
+    if (!fromAirport || !toAirport) return;
+    navigate(`${RESULTS_ROUTE}?from=${fromAirport.code}&to=${toAirport.code}`);
   };
 
   return {
+    inputs,
     from,
     setFrom,
     setTo,
     to,
     searchPhrase,
     handleChange,
-    currentInput,
-    isDropDownOpen,
-    setSearchedCity,
-    handleOnFocus,
+    handleDropDownClick,
+    airportsList,
+    handleSubmitForm,
   };
 };

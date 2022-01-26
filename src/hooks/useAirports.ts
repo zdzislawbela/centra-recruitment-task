@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Airport } from '../models/Airport';
 import { AIRPORTS_API } from '../consts/api';

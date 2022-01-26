@@ -11,8 +11,9 @@ export const Background = ({ images, children }: Props) => {
   return (
     <>
       <div className={styles.background}>
-        {images.map((image) => (
+        {images.map((image, index) => (
           <div
+            key={index}
             className={styles.from}
             style={{
               backgroundImage: `url(${image})`,

@@ -4,7 +4,7 @@ import Airplane from '../../../../assets/svg/airplane.svg';
 import DropDownLine from '../../../../assets/svg/drop-down-line.svg';
 import Pin from '../../../../assets/svg/pin.svg';
 
-import styles from './SearchDropdown.module.scss';
+import styles from './AirportsDropDown.module.scss';
 
 interface Props {
   title: string;
@@ -12,7 +12,7 @@ interface Props {
   onClick: (value: string) => void;
 }
 
-export const SearchDropdown = ({ airportsName, title, onClick }: Props) => {
+export const AirportsDropDown = ({ airportsName, title, onClick }: Props) => {
   const handleOnClick = (value: string) => {
     onClick(value);
   };

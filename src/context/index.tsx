@@ -18,9 +18,7 @@ export const AirportContext = ({ children }) => {
   const { airports, isLoadingAirport, errorAirport } = useAirports();
   const { connections, isLoadingConnections, errorConnection } =
     useConnections();
-  const airportNames = airports.map((airport) => {
-    return airport.name;
-  });
+  const airportNames = airports.map(({ name }) => name);
 
   const isLoading = isLoadingAirport || isLoadingConnections;
   const error = errorAirport || errorConnection;
