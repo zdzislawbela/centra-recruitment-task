@@ -1,4 +1,4 @@
-.container {
+.searchButton {
   border: none;
   display: flex;
   justify-content: center;
@@ -8,6 +8,11 @@
   height: 60;
   border-radius: 16px;
   margin-left: 20px;
+
+  &:hover {
+    background: rgb(107, 136, 38);
+    cursor: pointer;
+  }
 }
 .icon {
   width: 24px;

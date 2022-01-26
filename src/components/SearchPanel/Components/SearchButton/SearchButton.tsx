@@ -9,7 +9,7 @@ interface Props {
 }
 export const SearchButton = ({ onClick }: Props) => {
   return (
-    <button className={styles.container} onClick={onClick}>
+    <button className={styles.searchButton} onClick={onClick}>
       <img
         className={styles.icon}
         src={MagnifyingGlass}

@@ -1,4 +1,5 @@
 .backButton {
+  position: absolute;
   display: flex;
   align-items: center;
   border: none;
@@ -9,6 +10,7 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 30px;
+  margin: 20px 40px;
 
   &:hover {
     cursor: pointer;
