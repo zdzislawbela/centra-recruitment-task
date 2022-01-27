@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import { NotFound } from '../components/NotFound';
 import { RESULTS_ROUTE, HOME_ROUTE } from '../consts/routes';
 import { Default } from '../layouts/Default';
 import { Home } from '../pages/home';
@@ -15,6 +16,7 @@ export const AppRouter = () => {
           path={RESULTS_ROUTE}
           element={<Default component={<Results />} />}
         />
+        <Route path="*" element={<Default component={<NotFound />} />} />
       </Routes>
     </Router>
   );

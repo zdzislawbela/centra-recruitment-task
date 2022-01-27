@@ -7,40 +7,31 @@ import { Connection } from '../models/Connection';
 interface AppSharedState {
   airportNames: string[];
   airports: Airport[];
-  isLoadingAirport: boolean;
-  errorAirport: boolean;
+  isLoading: boolean;
   connections: Connection;
-  isLoadingConnections: boolean;
-  errorConnection: boolean;
+  error: boolean;
 }
 
 const AppContext = createContext<AppSharedState>({} as AppSharedState);
 
-const AppSharedState = () => {
+export const AirportContext = ({ children }) => {
   const { airports, isLoadingAirport, errorAirport } = useAirports();
   const { connections, isLoadingConnections, errorConnection } =
     useConnections();
-  const airportNames = airports.map((airport) => {
-    return airport.name;
-  });
+  const airportNames = airports.map(({ name }) => name);
 
-  return {
+  const isLoading = isLoadingAirport || isLoadingConnections;
+  const error = errorAirport || errorConnection;
+
+  const value = {
     airportNames,
     airports,
     connections,
-    isLoadingAirport,
-    isLoadingConnections,
-    errorAirport,
-    errorConnection,
+    isLoading,
+    error,
   };
-};
 
-export const AirportContext = ({ children }) => {
-  return (
-    <AppContext.Provider value={AppSharedState()}>
-      {children}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
 export const useAppContext = () => useContext(AppContext);

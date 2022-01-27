@@ -1,32 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-//@ts-expect-error
+import { AirportsDropDown } from '../AirportsDropDown';
 import ChevronArrow from '../../../../assets/svg/chevron-arrow.svg';
-//@ts-expect-error
+import VerticalLine from '../../../../assets/svg/vertical-line.svg';
+
 import styles from './SearchInput.module.scss';
 
 interface Props {
-  label: string;
+  name: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus: React.FocusEventHandler<HTMLInputElement>;
+  airportsList: string[];
+  onDropDownClick: (city: string) => void;
+  required?: boolean;
 }
 
-export const SearchInput = ({ label, value, onChange, onFocus }: Props) => {
+export const SearchInput = ({
+  name,
+  value,
+  onChange,
+  required = false,
+  airportsList,
+  onDropDownClick,
+}: Props) => {
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+
+  const handleDropDownClick = (city: string) => {
+    setIsDropDownOpen(false);
+    onDropDownClick(city);
+  };
   return (
-    <div className={styles.container}>
-      <div className={styles.searchContainer}>
-        <label htmlFor={`input-${label}`}>{label}</label>
-        <input
-          type="text"
-          name={`input-${label}`}
-          placeholder="_"
-          value={value}
-          onChange={onChange}
-          onFocus={onFocus}
+    <div>
+      <div
+        onClick={() => setIsDropDownOpen(false)}
+        className={isDropDownOpen ? styles.container : styles.containerHidden}
+      ></div>
+      <div
+        className={styles.inputContainer}
+        onClick={() => setIsDropDownOpen(true)}
+      >
+        <div className={styles.searchContainer}>
+          <label htmlFor={`input-${name}`}>{name}</label>
+          <input
+            required={required}
+            type="text"
+            name={`input-${name}`}
+            placeholder={isDropDownOpen || value ? '' : '_'}
+            value={value}
+            onChange={onChange}
+          />
+        </div>
+        <img className={styles.downArrow} src={ChevronArrow} alt="Down arrow" />
+
+        <img
+          className={styles.splitLine}
+          src={VerticalLine}
+          alt="Vertical line"
         />
       </div>
-      <img src={ChevronArrow} alt="Down arrow" />
+      {isDropDownOpen && (
+        <AirportsDropDown
+          airportsName={airportsList}
+          title="Popular airports nearby"
+          onClick={(city: string) => handleDropDownClick(city)}
+        />
+      )}
     </div>
   );
 };

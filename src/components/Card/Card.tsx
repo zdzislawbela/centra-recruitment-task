@@ -1,6 +1,5 @@
 import React from 'react';
 
-//@ts-expect-error
 import styles from './Card.module.scss';
 
 interface Props {

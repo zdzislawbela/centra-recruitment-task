@@ -1,14 +1,10 @@
 import React from 'react';
 
-//@ts-expect-error
 import Airplane from '../../../../assets/svg/airplane.svg';
-
-//@ts-expect-error
 import DropDownLine from '../../../../assets/svg/drop-down-line.svg';
-//@ts-expect-error
 import Pin from '../../../../assets/svg/pin.svg';
-//@ts-expect-error
-import styles from './SearchDropdown.module.scss';
+
+import styles from './AirportsDropDown.module.scss';
 
 interface Props {
   title: string;
@@ -16,7 +12,7 @@ interface Props {
   onClick: (value: string) => void;
 }
 
-export const SearchDropdown = ({ airportsName, title, onClick }: Props) => {
+export const AirportsDropDown = ({ airportsName, title, onClick }: Props) => {
   const handleOnClick = (value: string) => {
     onClick(value);
   };
