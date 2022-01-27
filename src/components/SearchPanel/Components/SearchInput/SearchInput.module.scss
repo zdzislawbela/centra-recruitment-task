@@ -15,7 +15,8 @@
   display: flex;
   justify-content: space-around;
   flex: 1;
-  margin: 0 10px;
+  margin: 10px 10px;
+  min-width: 290px;
 
   .searchContainer {
     display: flex;
@@ -29,7 +30,10 @@
     }
   }
   .downArrow {
+    position: relative;
+    top: 20px;
     width: 20px;
+    height: 10px;
   }
 
   .splitLine {

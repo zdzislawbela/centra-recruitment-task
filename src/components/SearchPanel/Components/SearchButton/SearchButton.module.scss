@@ -1,13 +1,14 @@
 .searchButton {
-  border: none;
   display: flex;
+  min-width: 55px;
+  border: none;
   justify-content: center;
   align-items: center;
   background: #e46846;
   width: 76;
   height: 60;
   border-radius: 16px;
-  margin-left: 20px;
+  flex: 1;
 
   &:hover {
     background: rgb(107, 136, 38);
