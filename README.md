@@ -1,3 +1,12 @@
+# Preview
+
+https://airport-connections.vercel.app/
+
+# How to start locally
+
+- Prepare `.env` file
+- Run `npm i && npm run dev`
+
 # Centra: recruitment
 
 As a recruitment task you will be creating an app that lists airports and allows to search for connections between them.
