@@ -14,6 +14,10 @@ export const Results = () => {
   const to = useQueryParam('to');
   const { airports, isLoading, error } = useAppContext();
 
+  if (!from || !to) {
+    return <p>Wrong path. Missing airport code.</p>;
+  }
+
   if (error || !airports) {
     return <Error />;
   }
