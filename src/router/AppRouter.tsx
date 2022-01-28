@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { NotFound } from '../components/NotFound';
 import { RESULTS_ROUTE, HOME_ROUTE } from '../consts/routes';
@@ -9,15 +9,13 @@ import { Results } from '../pages/results';
 
 export const AppRouter = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path={HOME_ROUTE} element={<Default component={<Home />} />} />
-        <Route
-          path={RESULTS_ROUTE}
-          element={<Default component={<Results />} />}
-        />
-        <Route path="*" element={<Default component={<NotFound />} />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="*" element={<Default component={<NotFound />} />} />
+      <Route path={HOME_ROUTE} element={<Default component={<Home />} />} />
+      <Route
+        path={`${RESULTS_ROUTE}*`}
+        element={<Default component={<Results />} />}
+      />
+    </Routes>
   );
 };

@@ -1,12 +1,15 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import { AirportContext } from './context';
 import { AppRouter } from './router/AppRouter';
 
 export const App = () => {
   return (
-    <AirportContext>
-      <AppRouter />
-    </AirportContext>
+    <BrowserRouter>
+      <AirportContext>
+        <AppRouter />
+      </AirportContext>
+    </BrowserRouter>
   );
 };
