@@ -58,7 +58,7 @@ export const SearchInput = ({
           alt="Vertical line"
         />
       </div>
-      {isDropDownOpen && (
+      {isDropDownOpen && airportsList && (
         <AirportsDropDown
           airportsName={airportsList}
           title="Popular airports nearby"
