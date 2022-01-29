@@ -37,12 +37,14 @@ export const useSearchPanel = () => {
   const handleDropDownClick = ({ value, updateState }: HandleUserAction) =>
     updateState(value);
 
-  const airportsList = airportNames.filter(
-    (name: string) =>
-      name.toLocaleLowerCase().includes(searchPhrase.toLocaleLowerCase()) &&
-      name !== to &&
-      name !== from
-  );
+  const airportsList = airportNames
+    ? airportNames.filter(
+        (name: string) =>
+          name.toLocaleLowerCase().includes(searchPhrase.toLocaleLowerCase()) &&
+          name !== to &&
+          name !== from
+      )
+    : undefined;
 
   const handleSubmitForm = (event?: React.SyntheticEvent<Element, Event>) => {
     event.preventDefault();

@@ -1,33 +1,16 @@
-import { useState, useEffect } from 'react';
-
 import { CONNECTIONS_API } from '../consts/api';
-import { get } from './get';
+import { useSendGetRequest } from './useSendGetRequest';
+
+const TIMEOUT = 3000;
 
 export const useConnections = () => {
-  const [isLoadingConnections, setIsLoadingConnections] = useState(false);
-  const [errorConnection, setErrorConnection] = useState(false);
-  const [connectionsData, setConnectionsData] = useState();
+  const { results, error } = useSendGetRequest<string>({
+    api: CONNECTIONS_API,
+  });
 
-  const sendQuery = async () => {
-    try {
-      setIsLoadingConnections(true);
-      const response = await get(CONNECTIONS_API);
-      setConnectionsData(response.data);
-    } catch (error) {
-      setErrorConnection(error);
-      setTimeout(() => sendQuery(), 1000);
-    } finally {
-      setIsLoadingConnections(false);
-    }
-  };
+  const connections = convertConnectins(results);
 
-  useEffect(() => {
-    sendQuery();
-  }, []);
-
-  const connections = convertConnectins(connectionsData);
-
-  return { connections, isLoadingConnections, errorConnection };
+  return { connections, error };
 };
 
 const convertConnectins = (connectionsData: string) => {

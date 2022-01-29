@@ -12,16 +12,15 @@ import { SelectedAirportNames } from './components/SelectedAirportNames';
 export const Results = () => {
   const from = useQueryParam('from');
   const to = useQueryParam('to');
-  const { airports, isLoading, error } = useAppContext();
+  const { airports, errors } = useAppContext();
 
   if (!from || !to) {
     return <p>Wrong path. Missing airport code.</p>;
   }
-
-  if (error || !airports) {
-    return <Error />;
+  if (errors.length) {
+    return <Error errors={errors} />;
   }
-  if (isLoading || !airports.length) {
+  if (!airports) {
     return <Loading />;
   }
 
