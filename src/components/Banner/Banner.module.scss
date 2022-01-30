@@ -1,0 +1,61 @@
+.banner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+
+  background: #ffffff;
+  border: 1px solid #ec957e;
+  box-sizing: border-box;
+  box-shadow: 0px 6px 12px rgba(132, 140, 162, 0.08),
+    0px -6px 12px rgba(132, 140, 162, 0.08);
+  border-radius: 16px;
+
+  margin: 20px;
+  padding: 10px;
+}
+.codeContainer {
+  display: flex;
+  margin-bottom: 10px;
+  max-width: 100%;
+  & > img {
+    width: 80px;
+  }
+  & .airportCode {
+    position: static;
+    height: 32px;
+    left: 0px;
+    top: 0px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 32px;
+    color: #141713;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 24px;
+  }
+}
+
+.goButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 81px;
+  height: 58px;
+  background: #e46846;
+  border-radius: 16px;
+  margin-right: 20px;
+
+  & > * {
+    display: flex;
+    justify-content: center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: #ffffff;
+  }
+}
