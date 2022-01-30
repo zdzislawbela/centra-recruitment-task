@@ -1,4 +1,5 @@
 import { CONNECTIONS_API } from '../consts/api';
+import { formatConnectionsFromApi } from '../helpers/formatConnectionsFromApi';
 import { useSendGetRequest } from './useSendGetRequest';
 
 const TIMEOUT = 3000;
@@ -19,16 +20,3 @@ const convertConnectins = (connectionsData: string) => {
 
   return formatConnectionsFromApi(splittedByNewLine);
 };
-
-const formatConnectionsFromApi = (array: string[]) =>
-  array.reduce((airportsConnections, row) => {
-    const semicolonIndex = row.indexOf(':');
-    const key = row.slice(0, semicolonIndex);
-    const values = row.slice(semicolonIndex + 2).split(' ');
-    const clearValues = values.map((value) => value.replace(',', ''));
-
-    return {
-      ...airportsConnections,
-      [key]: clearValues,
-    };
-  }, {});

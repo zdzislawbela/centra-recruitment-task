@@ -5,7 +5,7 @@ import { useAppContext } from '../../context';
 import { Background } from './components/Background/';
 import { BackButton } from './components/BackButton';
 import { Loading } from '../../components/Loading';
-import { getAirportsByCode } from './helpers/getAirportsByCode';
+import { getAirportsByCode } from '../../helpers/getAirportsByCode';
 import { Error } from '../../components/Error';
 import { SelectedAirportNames } from './components/SelectedAirportNames';
 
@@ -25,8 +25,10 @@ export const Results = () => {
   }
 
   const selectedAirports = getAirportsByCode(airports, [from, to]);
-  const images = selectedAirports.map(({ images }) => images.full);
-  const names = selectedAirports.map(({ name }) => name);
+  if (!selectedAirports) return;
+  const images = selectedAirports.map((airport) => airport?.images.full);
+  const names = selectedAirports.map((airport) => airport?.name);
+  if (!images || !names) return;
 
   return (
     <Background images={images}>

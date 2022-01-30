@@ -1,4 +1,4 @@
-import { Airport } from '../../../models/Airport';
+import { Airport } from '../models/Airport';
 
 export const getAirportsByCode = (
   airports: Airport[],
