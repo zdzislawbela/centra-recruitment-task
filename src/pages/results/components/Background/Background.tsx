@@ -21,6 +21,9 @@ export const Background = ({ images, children }: Props) => (
           }}
         />
       ))}
+    </div>
+
+    <div className={styles.children}>
       <div className={styles.flyLineContainer}>
         <img
           className={styles.flyLine}
@@ -28,7 +31,7 @@ export const Background = ({ images, children }: Props) => (
           alt="Fly curved line"
         />
       </div>
+      {children}
     </div>
-    <div className={styles.children}>{children}</div>
   </>
 );

@@ -8,6 +8,7 @@ import { Loading } from '../../components/Loading';
 import { getAirportsByCode } from '../../helpers/getAirportsByCode';
 import { Error } from '../../components/Error';
 import { SelectedAirportNames } from './components/SelectedAirportNames';
+import { Banner } from '../../components/Banner';
 
 export const Results = () => {
   const from = useQueryParam('from');
@@ -34,6 +35,7 @@ export const Results = () => {
     <Background images={images}>
       <BackButton />
       <SelectedAirportNames names={names} />
+      <Banner airports={selectedAirports} />
     </Background>
   );
 };
