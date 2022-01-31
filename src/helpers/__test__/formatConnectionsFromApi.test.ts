@@ -1,4 +1,4 @@
-import { formatConnectionsFromApi } from '../formatConnectionsFromApi';
+import { formatConnectionsFromApi } from '..';
 
 const splittedByNewLine = ['1234: 1, 2, 3, 4', '5678: 5, 6, 7, 8'];
 

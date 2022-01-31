@@ -1,4 +1,4 @@
-import { getAirportsByCode } from '../getAirportsByCode';
+import { getAirportsByCode } from '..';
 import { airports } from './airports';
 
 describe('getAirportsByCode', () => {

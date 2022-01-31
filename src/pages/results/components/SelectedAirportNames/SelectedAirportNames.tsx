@@ -9,7 +9,7 @@ interface Props {
 export const SelectedAirportNames = ({ names }: Props) => (
   <div className={styles.airportNames}>
     {names.map((name, index) => (
-      <div className={styles.primaryText} key={index}>
+      <div key={index} className={styles.primaryText}>
         <p>{name}</p>
       </div>
     ))}

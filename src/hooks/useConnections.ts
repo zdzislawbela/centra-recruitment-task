@@ -1,8 +1,6 @@
 import { CONNECTIONS_API } from '../consts/api';
-import { formatConnectionsFromApi } from '../helpers/formatConnectionsFromApi';
+import { formatConnectionsFromApi } from '../helpers/';
 import { useSendGetRequest } from './useSendGetRequest';
-
-const TIMEOUT = 3000;
 
 export const useConnections = () => {
   const { results, error } = useSendGetRequest<string>({

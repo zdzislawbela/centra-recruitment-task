@@ -1,9 +1,10 @@
 .banner {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   align-items: center;
-
+  flex-wrap: wrap;
+  width: 70%;
+  min-width: 330px;
   background: #ffffff;
   border: 1px solid #ec957e;
   box-sizing: border-box;
@@ -47,7 +48,7 @@
   height: 58px;
   background: #e46846;
   border-radius: 16px;
-  margin-right: 20px;
+  margin: 0 20px;
 
   & > * {
     display: flex;
@@ -58,4 +59,7 @@
     line-height: 30px;
     color: #ffffff;
   }
+}
+.buttonContainer {
+  display: flex;
 }
