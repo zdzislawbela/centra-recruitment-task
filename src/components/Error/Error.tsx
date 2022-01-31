@@ -7,8 +7,6 @@ interface Props {
 }
 
 export const Error = ({ errors }: Props) => {
-  console.log({ errors });
-
   const isLongWaitingTime = errors.find(
     ({ message }) => message === 'long-waiting-time'
   );
@@ -28,9 +26,9 @@ export const Error = ({ errors }: Props) => {
         <div>
           Details:
           <div className={styles.details}>
-            {errorMessages.map((message) => {
+            {errorMessages.map((message, index) => {
               return (
-                <p>
+                <p key={index}>
                   <i>{message}</i>
                 </p>
               );
