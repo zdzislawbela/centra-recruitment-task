@@ -5,11 +5,10 @@ import styles from './Banner.module.scss';
 
 interface Props {
   airports: Airport[];
+  connection: string[];
 }
 
-export const Banner = ({ airports }: Props) => {
-  console.log({ airports });
-
+export const Banner = ({ airports, connection }: Props) => {
   const codeFrom = airports[0].code;
   const codeTo = airports[1].code;
   return (
@@ -19,10 +18,17 @@ export const Banner = ({ airports }: Props) => {
         <img src={OneChangeDots} alt="One change dots" />
         <p className={styles.airportCode}>{codeTo}</p>
       </div>
-      <p>1 chagne</p>
-      <button className={styles.goButton}>
-        <p>Go!</p>
-      </button>
+      <div className={styles.buttonContainer}>
+        {connection.length >= 1 ? (
+          <p>{connection.length} changes</p>
+        ) : (
+          <p>direct</p>
+        )}
+
+        <button className={styles.goButton}>
+          <p>Go!</p>
+        </button>
+      </div>
     </div>
   );
 };
